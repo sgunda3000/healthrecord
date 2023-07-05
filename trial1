@@ -1,0 +1,54 @@
+using System;
+
+namespace EHRApp
+{
+    class HealthRecord
+    {
+        public string PatientName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Gender { get; set; }
+        public string MedicalHistory { get; set; }
+        public string CurrentMedications { get; set; }
+
+        public HealthRecord(string name, DateTime dob, string gender)
+        {
+            PatientName = name;
+            DateOfBirth = dob;
+            Gender = gender;
+        }
+
+        public void AddMedicalHistory(string history)
+        {
+            MedicalHistory += history + "\n";
+        }
+
+        public void AddMedication(string medication)
+        {
+            CurrentMedications += medication + "\n";
+        }
+
+        public void DisplayRecord()
+        {
+            Console.WriteLine("Patient Name: " + PatientName);
+            Console.WriteLine("Date of Birth: " + DateOfBirth.ToShortDateString());
+            Console.WriteLine("Gender: " + Gender);
+            Console.WriteLine("Medical History: " + MedicalHistory);
+            Console.WriteLine("Current Medications: " + CurrentMedications);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            HealthRecord patientRecord = new HealthRecord("John Doe", new DateTime(1980, 1, 1), "Male");
+
+            patientRecord.AddMedicalHistory("Allergies: Pollen, Dust");
+            patientRecord.AddMedicalHistory("Previous surgeries: Appendectomy");
+            patientRecord.AddMedication("Medication A: 10mg, Twice a day");
+            patientRecord.AddMedication("Medication B: 20mg, Once daily");
+
+            patientRecord.DisplayRecord();
+        }
+    }
+}
